@@ -13,7 +13,7 @@ const SKIN_MAX_BYTES = 8192;
 // ⚠️ Nový vestavěný skin = přidat SEM + do skins.js + MIGRACE rozšiřující SelectField
 // values na users.skin_id a instance_settings.builtin_id + i18n název v common.json.
 const KNOWN_SKIN_IDS = ['indigo', 'contrast', 'terminal', 'sepia',
-  'ocean', 'les', 'pulnoc', 'svestka', 'broskev', 'grafit', 'custom'];
+  'ocean', 'les', 'pulnoc', 'svestka', 'broskev', 'grafit', 'rubin', 'custom'];
 
 // 1:1 s index.css :root/.dark (32 barev) + 3 canvas tokeny plátna mapy.
 const SKIN_COLOR_TOKENS = [
@@ -31,7 +31,7 @@ const SKIN_FONT_TOKENS = ['font-heading', 'font-body', 'font-display', 'font-mon
 // samotné SVG je součást aplikace (lite/LitePattern), do skinu nikdy nejde
 // obrázek ani URL. Kreslí se barvou primary s nízkou průhledností.
 const SKIN_PATTERNS = ['leaves', 'wave', 'rings', 'stripes', 'prompt',
-  'lines', 'stars', 'petals', 'arcs', 'grid'];
+  'lines', 'stars', 'petals', 'arcs', 'grid', 'scope'];
 // Poslední položka font stacku MUSÍ být generická — neznámá rodina pak neškodně
 // spadne na ni (webfonty se nikdy nestahují, k dispozici jsou jen bundlené a systémové).
 const SKIN_FONT_GENERICS = ['sans-serif', 'serif', 'monospace', 'system-ui'];
