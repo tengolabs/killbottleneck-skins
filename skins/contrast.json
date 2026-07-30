@@ -1,10 +1,10 @@
 {
   "format": "kb-skin",
   "version": 1,
-  "name": "Vysoký kontrast",
+  "name": "High contrast",
   "author": "killBottleneck",
   "license": "CC0-1.0",
-  "description": "Maximální čitelnost — čistá bílá/černá, ostré hrany, systémové fonty.",
+  "description": "Maximum readability — pure black and white, sharp corners, system fonts.",
   "light": {
     "background": "0 0% 100%",
     "foreground": "0 0% 0%",
@@ -42,6 +42,7 @@
     "canvas-dots": "0 0% 72%",
     "canvas-node": "0 0% 35%",
     "radius": "0",
+    "pattern": "stripes",
     "font-heading": [
       "system-ui",
       "sans-serif"
@@ -58,8 +59,7 @@
       "ui-monospace",
       "Consolas",
       "monospace"
-    ],
-    "pattern": "stripes"
+    ]
   },
   "dark": {
     "background": "0 0% 0%",

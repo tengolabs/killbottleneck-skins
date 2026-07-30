@@ -1,10 +1,10 @@
 {
   "format": "kb-skin",
   "version": 1,
-  "name": "Papír",
+  "name": "Paper",
   "author": "killBottleneck",
   "license": "CC0-1.0",
-  "description": "Teplé papírové tóny se serifovými nadpisy — klidné čtení.",
+  "description": "Warm paper tones with serif headings — calm reading.",
   "light": {
     "background": "40 30% 96%",
     "foreground": "30 25% 15%",
@@ -42,6 +42,7 @@
     "canvas-dots": "38 22% 84%",
     "canvas-node": "30 18% 60%",
     "radius": "0.75rem",
+    "pattern": "lines",
     "font-heading": [
       "Georgia",
       "Times New Roman",
@@ -63,8 +64,7 @@
       "Menlo",
       "Consolas",
       "monospace"
-    ],
-    "pattern": "lines"
+    ]
   },
   "dark": {
     "background": "30 12% 11%",

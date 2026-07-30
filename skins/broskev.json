@@ -1,10 +1,10 @@
 {
   "format": "kb-skin",
   "version": 1,
-  "name": "Broskev",
+  "name": "Peach",
   "author": "killBottleneck",
-  "description": "Teplá broskvová — měkké rohy, přátelský tón.",
   "license": "CC0-1.0",
+  "description": "Warm peach — soft corners, friendly tone.",
   "light": {
     "background": "28 60% 96%",
     "foreground": "20 35% 16%",

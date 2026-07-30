@@ -4,7 +4,7 @@
   "name": "Indigo",
   "author": "killBottleneck",
   "license": "CC0-1.0",
-  "description": "Výchozí vzhled aplikace.",
+  "description": "The default look.",
   "light": {
     "background": "210 40% 98%",
     "foreground": "222 47% 11%",
@@ -42,6 +42,7 @@
     "canvas-dots": "214 32% 91%",
     "canvas-node": "215 20% 65%",
     "radius": "0.5rem",
+    "pattern": "rings",
     "font-heading": [
       "Plus Jakarta Sans",
       "ui-sans-serif",
@@ -69,8 +70,7 @@
       "Liberation Mono",
       "Courier New",
       "monospace"
-    ],
-    "pattern": "rings"
+    ]
   },
   "dark": {
     "background": "222 16% 12%",

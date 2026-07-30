@@ -1,10 +1,10 @@
 {
   "format": "kb-skin",
   "version": 1,
-  "name": "Oceán",
+  "name": "Ocean",
   "author": "killBottleneck",
-  "description": "Chladná modrá — klid a soustředění.",
   "license": "CC0-1.0",
+  "description": "Cool blue — calm and focus.",
   "light": {
     "background": "210 45% 97%",
     "foreground": "215 50% 14%",

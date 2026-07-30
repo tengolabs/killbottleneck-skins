@@ -1,10 +1,10 @@
 {
   "format": "kb-skin",
   "version": 1,
-  "name": "Půlnoc",
+  "name": "Midnight",
   "author": "killBottleneck",
   "license": "CC0-1.0",
-  "description": "Noční modř se zlatými akcenty — tmavá v obou režimech, tmavý je hlubší noc.",
+  "description": "Deep night blue with golden accents — dark in both modes.",
   "light": {
     "background": "222 32% 17%",
     "foreground": "45 40% 88%",

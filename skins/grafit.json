@@ -1,10 +1,10 @@
 {
   "format": "kb-skin",
   "version": 1,
-  "name": "Grafit",
+  "name": "Graphite",
   "author": "killBottleneck",
-  "description": "Černobílý minimalismus — žádné barvy, jen obsah.",
   "license": "CC0-1.0",
+  "description": "Black-and-white minimalism — no colors, just content.",
   "light": {
     "background": "0 0% 97%",
     "foreground": "0 0% 10%",

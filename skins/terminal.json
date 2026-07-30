@@ -1,10 +1,10 @@
 {
   "format": "kb-skin",
   "version": 1,
-  "name": "Terminál",
+  "name": "Terminal",
   "author": "killBottleneck",
   "license": "CC0-1.0",
-  "description": "Zelená na tmavé, mono fonty, ostré rohy — tmavý duch v obou režimech, tmavý je ještě hlubší.",
+  "description": "Green on dark, mono fonts, sharp corners — dark spirit in both modes.",
   "light": {
     "background": "160 10% 15%",
     "foreground": "140 45% 78%",

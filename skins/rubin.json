@@ -1,10 +1,10 @@
 {
   "format": "kb-skin",
   "version": 1,
-  "name": "Rubín",
+  "name": "Ruby",
   "author": "killBottleneck",
   "license": "CC0-1.0",
-  "description": "Červená na černé — šetří noční vidění (hvězdárny, staré palubovky).",
+  "description": "Red on black — preserves night vision (observatories, old dashboards).",
   "light": {
     "background": "0 0% 17%",
     "foreground": "0 80% 60%",

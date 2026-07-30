@@ -1,10 +1,10 @@
 {
   "format": "kb-skin",
   "version": 1,
-  "name": "Švestka",
+  "name": "Plum",
   "author": "killBottleneck",
-  "description": "Sytá fialová — hravá, ale ne křiklavá.",
   "license": "CC0-1.0",
+  "description": "Rich purple — playful, not loud.",
   "light": {
     "background": "285 30% 97%",
     "foreground": "285 35% 14%",

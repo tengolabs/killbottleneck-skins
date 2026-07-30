@@ -1,10 +1,10 @@
 {
   "format": "kb-skin",
   "version": 1,
-  "name": "Les",
+  "name": "Forest",
   "author": "killBottleneck",
-  "description": "Zelená příroda — teplé světlo mezi stromy.",
   "license": "CC0-1.0",
+  "description": "Green nature — warm light between the trees.",
   "light": {
     "background": "100 25% 96%",
     "foreground": "130 30% 12%",
