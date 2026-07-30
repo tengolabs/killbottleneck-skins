@@ -10,7 +10,10 @@ const SKIN_SCHEMA_VERSION = 1;
 const SKIN_MAX_BYTES = 8192;
 
 // Vestavěné skiny + 'custom' — sdílí users.skin_id (migrace) i sanitizace v hooku.
-const KNOWN_SKIN_IDS = ['indigo', 'contrast', 'terminal', 'sepia', 'custom'];
+// ⚠️ Nový vestavěný skin = přidat SEM + do skins.js + MIGRACE rozšiřující SelectField
+// values na users.skin_id a instance_settings.builtin_id + i18n název v common.json.
+const KNOWN_SKIN_IDS = ['indigo', 'contrast', 'terminal', 'sepia',
+  'ocean', 'les', 'pulnoc', 'svestka', 'broskev', 'grafit', 'custom'];
 
 // 1:1 s index.css :root/.dark (32 barev) + 3 canvas tokeny plátna mapy.
 const SKIN_COLOR_TOKENS = [
@@ -24,6 +27,10 @@ const SKIN_COLOR_TOKENS = [
   'canvas-edge', 'canvas-dots', 'canvas-node',
 ];
 const SKIN_FONT_TOKENS = ['font-heading', 'font-body', 'font-display', 'font-mono'];
+// Dekorativní malůvka v pozadí LITE režimu. Skin říká jen JMÉNO z výčtu —
+// samotné SVG je součást aplikace (lite/LitePattern), do skinu nikdy nejde
+// obrázek ani URL. Kreslí se barvou primary s nízkou průhledností.
+const SKIN_PATTERNS = ['leaves', 'wave'];
 // Poslední položka font stacku MUSÍ být generická — neznámá rodina pak neškodně
 // spadne na ni (webfonty se nikdy nestahují, k dispozici jsou jen bundlené a systémové).
 const SKIN_FONT_GENERICS = ['sans-serif', 'serif', 'monospace', 'system-ui'];
@@ -96,7 +103,7 @@ function cleanSection(section, label, errors, warnings) {
     errors.push('bad-section:' + label);
     return null;
   }
-  const known = SKIN_COLOR_TOKENS.concat(SKIN_FONT_TOKENS, ['radius']);
+  const known = SKIN_COLOR_TOKENS.concat(SKIN_FONT_TOKENS, ['radius', 'pattern']);
   Object.keys(section).forEach((k) => {
     if (known.indexOf(k) === -1) warnings.push('unknown-token:' + label + '.' + k);
   });
@@ -114,6 +121,13 @@ function cleanSection(section, label, errors, warnings) {
   if (section.radius !== undefined) {
     if (validRadius(section.radius)) out.radius = section.radius.trim();
     else errors.push('bad-radius:' + label);
+  }
+  if (section.pattern !== undefined) {
+    if (typeof section.pattern === 'string' && SKIN_PATTERNS.indexOf(section.pattern.trim()) !== -1) {
+      out.pattern = section.pattern.trim();
+    } else {
+      errors.push('bad-pattern:' + label);
+    }
   }
   return out;
 }
@@ -164,6 +178,7 @@ module.exports = {
   SKIN_COLOR_TOKENS: SKIN_COLOR_TOKENS,
   SKIN_FONT_TOKENS: SKIN_FONT_TOKENS,
   SKIN_FONT_GENERICS: SKIN_FONT_GENERICS,
+  SKIN_PATTERNS: SKIN_PATTERNS,
   fontStack: fontStack,
   validateSkin: validateSkin,
 };
