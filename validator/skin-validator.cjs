@@ -30,7 +30,8 @@ const SKIN_FONT_TOKENS = ['font-heading', 'font-body', 'font-display', 'font-mon
 // Dekorativní malůvka v pozadí LITE režimu. Skin říká jen JMÉNO z výčtu —
 // samotné SVG je součást aplikace (lite/LitePattern), do skinu nikdy nejde
 // obrázek ani URL. Kreslí se barvou primary s nízkou průhledností.
-const SKIN_PATTERNS = ['leaves', 'wave'];
+const SKIN_PATTERNS = ['leaves', 'wave', 'rings', 'stripes', 'prompt',
+  'lines', 'stars', 'petals', 'arcs', 'grid'];
 // Poslední položka font stacku MUSÍ být generická — neznámá rodina pak neškodně
 // spadne na ni (webfonty se nikdy nestahují, k dispozici jsou jen bundlené a systémové).
 const SKIN_FONT_GENERICS = ['sans-serif', 'serif', 'monospace', 'system-ui'];

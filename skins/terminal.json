@@ -69,7 +69,8 @@
       "Menlo",
       "Consolas",
       "monospace"
-    ]
+    ],
+    "pattern": "prompt"
   },
   "dark": {
     "background": "160 12% 5%",

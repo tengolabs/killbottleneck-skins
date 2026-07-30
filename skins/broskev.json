@@ -65,7 +65,8 @@
       "Consolas",
       "monospace"
     ],
-    "radius": "1rem"
+    "radius": "1rem",
+    "pattern": "arcs"
   },
   "dark": {
     "background": "22 20% 11%",

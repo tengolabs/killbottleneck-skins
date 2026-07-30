@@ -58,7 +58,8 @@
       "ui-monospace",
       "Consolas",
       "monospace"
-    ]
+    ],
+    "pattern": "stripes"
   },
   "dark": {
     "background": "0 0% 0%",

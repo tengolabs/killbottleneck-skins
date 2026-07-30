@@ -63,7 +63,8 @@
       "Menlo",
       "Consolas",
       "monospace"
-    ]
+    ],
+    "pattern": "lines"
   },
   "dark": {
     "background": "30 12% 11%",
