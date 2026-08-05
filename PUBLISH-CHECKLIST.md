@@ -5,20 +5,21 @@ ať se ve spěchu na nic nezapomene. Pořadí je záměrné.
 
 ## 0. Rozhodnutí předem (Richard)
 
-- [ ] **Cílová organizace** — README tohoto repa říká „org `killbottleneck`",
-      novější rozhodnutí (29. 7.) je org **`tengolabs`** (patří Tengo s.r.o.,
-      veřejný produkt = `tengolabs/killbottleneck`). Sjednotit a podle toho
-      opravit odkazy níže.
+- [x] **Organizace — ROZHODNUTO 6. 8. 2026:** teď se jede pod **`tengosro`**
+      (repo zůstává, jen se zveřejní). Org **`tengolabs`** dostane až ČISTOU
+      verzi při oficiálním spuštění odladěné aplikace — přesun repa je tedy
+      SAMOSTATNÁ pozdější událost, ne součást tohoto checklistu.
 - [ ] **CC0 u validátoru potvrdit** — `validator/skin-validator.js` je
       byte-kopie produktového souboru (SUL); dual-licenci smí udělit jen
       držitel práv. Po potvrzení dopsat řádek do hlavičky souboru
       (⚠️ v PRODUKTU, pak byte-sync sem — jinak řve check-upstream).
 
-## 1. Přesun a zveřejnění repa
+## 1. Zveřejnění repa (pod tengosro)
 
-- [ ] Přesunout repo pod cílovou org (Settings → Transfer ownership).
 - [ ] Zapnout branch protection na `main` (vyžadovat zelené CI, žádný force-push).
 - [ ] Zveřejnit repo (až PO bodech 2–3 — historie je čistá, ale odkazy ať sedí).
+- [ ] *(později, při oficiálním spuštění)* přesun pod `tengolabs` — Transfer
+      ownership + přepnout GALLERY_URL v produktu i editoru + redirecty ověřit.
 
 ## 2. Ochrany PR flow (před prvním cizím PR)
 
@@ -37,9 +38,10 @@ ať se ve spěchu na nic nezapomene. Pořadí je záměrné.
       source" jen u editoru (MIT); skiny = CC0; NEŘÍKAT to o produktu (fair-code).
 - [ ] **Náhledové obrázky skinů** do README (mřížka light+dark, jde vyrobit
       screenshotem editoru per šablona).
-- [ ] Aktualizovat odkazy na repo: `editor/src/components/ImportExport.jsx`
+- [ ] Zkontrolovat odkazy na repo: `editor/src/components/ImportExport.jsx`
       (`GALLERY_URL`) + v PRODUKTU `SkinDialog.jsx` (GALLERY_URL) a oba README
-      produktu — dnes míří na `tengosro/killbottleneck-skins`.
+      produktu — míří na `tengosro/killbottleneck-skins`, což při zveřejnění
+      pod tengosro SEDÍ (měnit až při pozdějším přesunu na tengolabs).
 
 ## 4. Nasazení editoru
 
