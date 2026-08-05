@@ -41,7 +41,7 @@ Pravidla (vynucuje je validátor v aplikaci i tady v CI):
 
 - **Barvy** = holé HSL trojice `"H S% L%"` (žádné hex, žádné `hsl()`, žádná alfa).
   Povolené tokeny odpovídají CSS proměnným aplikace — kompletní seznam
-  v `validator/skin-validator.cjs` (`SKIN_COLOR_TOKENS`).
+  v `validator/skin-validator.js` (`SKIN_COLOR_TOKENS`).
 - **Fonty** = pole názvů rodin, poslední musí být generika
   (`sans-serif` / `serif` / `monospace` / `system-ui`). Webfonty se **nestahují** —
   použij písma zabalená v aplikaci (Inter, Plus Jakarta Sans) nebo systémová;
@@ -65,6 +65,23 @@ Pull request s jedním souborem `skins/<kebab-case-nazev>.json`. CI ho zvaliduje
 automaticky. Posíláš-li skin, souhlasíš s vydáním pod **CC0-1.0** (kredit
 zůstává v poli `author`).
 
+## Editor skinů
+
+Ve složce [`editor/`](editor/) je samostatná open source (MIT) webová aplikace:
+editace všech tokenů s živým náhledem (světlý i tmavý režim vedle sebe),
+import/export `.kb-skin.json` a start z kterékoliv vestavěné šablony.
+Běží celá v prohlížeči, žádná data nikam neposílá. Vývoj a build viz
+[`editor/README.md`](editor/README.md).
+
 ## Licence
 
-Obsah tohoto repa je [CC0 1.0](LICENSE) — public domain.
+| Co | Licence |
+|---|---|
+| `skins/*.json` (data skinů) | [CC0 1.0](LICENSE) — public domain, ber bez ptaní |
+| `validator/`, `scripts/` | [CC0 1.0](LICENSE) |
+| `editor/` (webová aplikace vč. malůvek) | [MIT](editor/LICENSE) |
+
+Editor je vědomě **jen o skinech** — vykresluje stylizovanou maketu, nikoli
+skutečné mapy. Produktový kód killBottlenecku (komponenty map, uzly) v tomto
+repu není a nebude; ten je licencován zvlášť (Sustainable Use License)
+v repu aplikace.
