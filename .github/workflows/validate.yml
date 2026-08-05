@@ -12,3 +12,19 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/validate-all.mjs
+  editor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: editor/package-lock.json
+      - run: npm ci
+        working-directory: editor
+      - run: npm run build
+        working-directory: editor
+      # ubuntu-latest má předinstalovaný Chrome; e2e sbírá console errors
+      - run: CHROME_PATH="$(which google-chrome || which chromium-browser)" npm run test:e2e
+        working-directory: editor
