@@ -3,7 +3,8 @@
 // round-trip přes hex se do HSL textu propíše jen při reálné změně barvy.
 
 export function parseHsl(text) {
-  const m = /^(\d{1,3}(?:\.\d+)?)\s+(\d{1,3}(?:\.\d+)?)%\s+(\d{1,3}(?:\.\d+)?)%$/.exec((text || '').trim());
+  // jen obyčejné mezery (ne \n/\t) — stejný kontrakt jako HSL_RE validátoru
+  const m = /^(\d{1,3}(?:\.\d+)?) +(\d{1,3}(?:\.\d+)?)% +(\d{1,3}(?:\.\d+)?)%$/.exec((text || '').trim());
   if (!m) return null;
   const h = parseFloat(m[1]);
   const s = parseFloat(m[2]);

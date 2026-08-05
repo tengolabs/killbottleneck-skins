@@ -10,6 +10,11 @@ let fail = 0;
 const names = new Set();
 
 for (const f of files) {
+  if (!/^[a-z0-9]+(-[a-z0-9]+)*\.json$/.test(f)) {
+    console.log(`❌ ${f}: název souboru musí být kebab-case (malá písmena, číslice, pomlčky)`);
+    fail++;
+    continue;
+  }
   let obj;
   try {
     obj = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));

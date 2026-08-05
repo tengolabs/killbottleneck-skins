@@ -33,9 +33,10 @@ async function setReactValue(page, selector, value) {
 const cssVar = (page, mode, name) =>
   page.$eval(`[data-preview="${mode}"]`, (el, n) => getComputedStyle(el).getPropertyValue(n).trim(), name);
 
-const preview = spawn('npx', ['vite', 'preview', '--port', String(PORT), '--strictPort'], {
-  cwd: editorDir, stdio: 'pipe',
-});
+// Přímo binárka vite (ne npx): kill pak zabíjí skutečný server, žádný osiřelý
+// proces držící port — jinak by příští běh tiše testoval starý build.
+const preview = spawn(path.join(editorDir, 'node_modules/.bin/vite'),
+  ['preview', '--port', String(PORT), '--strictPort'], { cwd: editorDir, stdio: 'pipe' });
 const previewOut = [];
 preview.stdout.on('data', (d) => previewOut.push(d.toString()));
 preview.stderr.on('data', (d) => previewOut.push(d.toString()));
@@ -88,6 +89,16 @@ try {
     (el) => ({ p: el.dataset.skinPattern, o: getComputedStyle(el).opacity }));
   expect(patLight.p === 'lines' && patDark.p === 'lines', 'pattern lines v obou panelech', JSON.stringify([patLight, patDark]));
   expect(parseFloat(patDark.o) > parseFloat(patLight.o), `dark opacity (${patDark.o}) > light (${patLight.o})`);
+
+  console.log('▶ pattern „None" → v maketě NIC (aplikace fallback nemá)');
+  await page.click('.pattern-grid button:first-child');
+  expect(await page.$('[data-preview="light"] [data-map-mock] [data-skin-pattern]') === null,
+    'None: žádná malůvka ve světlé maketě');
+  expect(await page.$('[data-preview="dark"] [data-map-mock] [data-skin-pattern]') === null,
+    'None: žádná malůvka v tmavé maketě');
+  await page.click('.pattern-grid button[title="lines"]');
+  expect(await page.$('[data-preview="light"] [data-map-mock] [data-skin-pattern="lines"]') !== null,
+    'lines: malůvka je zpět');
 
   console.log('▶ změna primary přes HSL text');
   await setReactValue(page, '.color-field[data-token="primary"] input[type="text"]', '0 100% 50%');
@@ -156,6 +167,20 @@ try {
   expect(await cssVar(page, 'light', '--background') === '200 50% 50%', 'light --background z importu');
   expect(await cssVar(page, 'dark', '--background') === '200 60% 10%', 'dark --background z importu');
   expect(await page.$eval('[data-meta-name]', (el) => el.value) === 'E2E Test', 'meta name z importu');
+
+  console.log('▶ dark sekce smí přebít radius (jako v aplikaci)');
+  const darkRadiusSkin = JSON.stringify({
+    format: 'kb-skin', version: 1, name: 'DarkR',
+    light: { background: '0 0% 98%', radius: '0' },
+    dark: { radius: '1rem' },
+  });
+  await setReactValue(page, '[data-import-text]', darkRadiusSkin);
+  await page.click('[data-import-apply]');
+  await page.waitForSelector('[data-import-ok]');
+  const lightR = await page.$eval('[data-preview="light"] .goal-node', (el) => getComputedStyle(el).borderRadius);
+  const darkR = await page.$eval('[data-preview="dark"] .goal-node', (el) => getComputedStyle(el).borderRadius);
+  expect(lightR === '0px', 'light radius 0 → 0px', lightR);
+  expect(darkR === '16px', 'dark override 1rem → 16px', darkR);
 
   console.log('▶ export + round-trip');
   await page.click('[data-export]');

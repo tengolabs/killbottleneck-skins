@@ -101,7 +101,7 @@ textarea { font-family: ui-monospace, monospace; font-size: 12px; }
   background-image: radial-gradient(hsl(var(--canvas-dots)) 1.2px, transparent 1.2px);
   background-size: 22px 22px;
 }
-.map-mock .pattern-art { position: absolute; inset-x: 0; left: 0; right: 0; bottom: 0; pointer-events: none; }
+.map-mock .pattern-art { position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none; }
 .map-edges { position: absolute; inset: 0; width: 100%; height: 100%; }
 .map-edges path { stroke: hsl(var(--canvas-edge)); stroke-width: 2; fill: none; }
 .apex-node {

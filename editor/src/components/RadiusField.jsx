@@ -25,7 +25,13 @@ export default function RadiusField({ value, own, onChange, t }) {
           className={own ? '' : 'inherited'} data-radius-value>
           {own ? (value === '0' ? '0' : value) : `(${t('radiusUnset')})`}
         </span>
-        <select value={unit} style={{ width: 70 }} onChange={(e) => commit(num, e.target.value)}>
+        <select value={unit} style={{ width: 70 }}
+          onChange={(e) => {
+            const u = e.target.value;
+            // převod hodnoty, ať zaoblení vizuálně nepoklesne (1rem = 16px)
+            const converted = u === 'px' ? Math.round(num * 16) : Math.round((num / 16) * 100) / 100;
+            commit(converted, u);
+          }}>
           <option value="rem">rem</option>
           <option value="px">px</option>
         </select>

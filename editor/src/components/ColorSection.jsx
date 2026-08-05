@@ -1,8 +1,9 @@
 import ColorField from './ColorField.jsx';
 import { effectiveToken } from '../lib/applyVars.js';
+import { SKIN_COLOR_TOKENS } from '../../../validator/skin-validator.js';
 
-// 35 tokenů seskupených po významu — pořadí a názvy 1:1 se SKIN_COLOR_TOKENS
-// (whitelist ve validátoru; tady se jen skládají do skupin pro přehlednost).
+// Tokeny seskupené po významu — úplnost vůči SKIN_COLOR_TOKENS vynucuje
+// assert při načtení modulu (nový token ve validátoru by jinak z UI tiše zmizel).
 const GROUPS = [
   ['groupBase', ['background', 'foreground', 'border', 'input', 'ring']],
   ['groupSurfaces', ['card', 'card-foreground', 'popover', 'popover-foreground']],
@@ -18,6 +19,11 @@ const GROUPS = [
   ]],
   ['groupCanvas', ['canvas-edge', 'canvas-dots', 'canvas-node']],
 ];
+
+const covered = GROUPS.flatMap(([, tokens]) => tokens);
+if (covered.length !== SKIN_COLOR_TOKENS.length || SKIN_COLOR_TOKENS.some((t) => !covered.includes(t))) {
+  throw new Error('ColorSection GROUPS nesouhlasí se SKIN_COLOR_TOKENS — zařaď nový token do skupiny');
+}
 
 export default function ColorSection({ skin, mode, defaults, onChangeToken, t }) {
   return GROUPS.map(([labelKey, tokens]) => (

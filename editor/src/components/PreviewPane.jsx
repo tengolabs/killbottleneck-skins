@@ -1,4 +1,4 @@
-import { previewVars, effectiveToken } from '../lib/applyVars.js';
+import { previewVars } from '../lib/applyVars.js';
 import MapMock from './MapMock.jsx';
 import UiMock from './UiMock.jsx';
 
@@ -6,8 +6,9 @@ import UiMock from './UiMock.jsx';
 // inline CSS proměnné, žádný zásah do :root (panely stojí vedle sebe).
 export default function PreviewPane({ skin, mode, defaults, t }) {
   const vars = previewVars(skin, mode, defaults);
-  // pattern je globální ze sekce light (jako v aplikaci)
-  const pattern = effectiveToken(skin, 'light', 'pattern', defaults).value;
+  // pattern VÝHRADNĚ ze skinu, BEZ fallbacku na výchozí vzhled — aplikace čte
+  // jen getActiveSkin().light.pattern; skin bez patternu nekreslí nic.
+  const pattern = skin.light?.pattern;
   return (
     <section className="preview-pane" data-preview={mode} style={vars}>
       <div className="pane-label">{t(mode === 'dark' ? 'previewDark' : 'previewLight')}</div>

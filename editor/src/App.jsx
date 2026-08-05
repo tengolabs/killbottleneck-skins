@@ -11,9 +11,10 @@ import PatternPicker from './components/PatternPicker.jsx';
 import PreviewPane from './components/PreviewPane.jsx';
 import ImportExport from './components/ImportExport.jsx';
 
-// Fonty, radius a malůvka jsou GLOBÁLNÍ ze sekce light (stejně jako v aplikaci:
-// skinToCss je bere z light, getActiveSkin().light.pattern) → edituje je jen
-// záložka Světlý; Tmavý = jen barvy.
+// Fonty, radius a malůvka se editují jen v záložce Světlý; Tmavý = jen barvy.
+// V aplikaci platí radius+fonty globálně z light, ale dark sekce je SMÍ přebít
+// (skinToCss) — editor to v UI nenabízí (vzácný případ z importu), náhled ale
+// dark override zobrazí správně (previewVars).
 export default function App() {
   const { lang, setLang, t } = useLang();
   const [skin, setSkin] = useState(() => structuredClone(BUILTINS[0].skin)); // indigo

@@ -36,7 +36,10 @@ export const SKIN_PATTERNS = ['leaves', 'wave', 'rings', 'stripes', 'prompt',
 // spadne na ni (webfonty se nikdy nestahují, k dispozici jsou jen bundlené a systémové).
 export const SKIN_FONT_GENERICS = ['sans-serif', 'serif', 'monospace', 'system-ui'];
 
-const HSL_RE = /^\d{1,3}(\.\d+)?\s+\d{1,3}(\.\d+)?%\s+\d{1,3}(\.\d+)?%$/;
+const HSL_RE = /^\d{1,3}(\.\d+)?[ ]+\d{1,3}(\.\d+)?%[ ]+\d{1,3}(\.\d+)?%$/;
+// Kontrolní znaky (vč. ANSI escape) nemají v meta polích co dělat — jinak jde
+// záškodnickým name podvrhnout výstup CI logu galerie (falešné ✅).
+const CTRL_RE = /[\u0000-\u001f\u007f]/;
 const RADIUS_RE = /^(\d+(\.\d+)?)(rem|px)$/;
 const FONT_NAME_RE = /^[A-Za-z0-9][A-Za-z0-9 \-]{0,40}$/;
 // CSS ident bez uvozovek (generika se NESMÍ uvozovat, jinak přestane být generikou)
@@ -48,7 +51,7 @@ function isPlainObject(v) {
 
 function validHsl(v) {
   if (typeof v !== 'string' || !HSL_RE.test(v.trim())) return false;
-  const parts = v.trim().split(/\s+/);
+  const parts = v.trim().split(/ +/);
   const h = parseFloat(parts[0]);
   const s = parseFloat(parts[1]);
   const l = parseFloat(parts[2]);
@@ -88,7 +91,7 @@ function metaString(input, key, maxLen, required, errors, clean) {
     if (required) errors.push('bad-' + key);
     return;
   }
-  if (typeof v !== 'string' || v.trim().length === 0 || v.trim().length > maxLen) {
+  if (typeof v !== 'string' || v.trim().length === 0 || v.trim().length > maxLen || CTRL_RE.test(v)) {
     errors.push('bad-' + key);
     return;
   }

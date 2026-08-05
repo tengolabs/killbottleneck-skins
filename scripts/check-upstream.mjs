@@ -14,9 +14,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
-const root = path.join(path.dirname(new URL(import.meta.url).pathname), '..');
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const flowmapDir = process.env.FLOWMAP_DIR || '/home/holly/Claude_Holly/flowmap-local';
 const updateLock = process.argv.includes('--update-lock');
 const lockPath = path.join(root, 'upstream.lock');
@@ -82,7 +83,7 @@ const lock = fs.existsSync(lockPath) ? JSON.parse(fs.readFileSync(lockPath, 'utf
 const patternHash = sha256(SRC.pattern);
 if (updateLock) {
   let commit = 'unknown';
-  try { commit = execSync(`git -C ${JSON.stringify(flowmapDir)} rev-parse --short HEAD`).toString().trim(); } catch {}
+  try { commit = execFileSync('git', ['-C', flowmapDir, 'rev-parse', '--short', 'HEAD']).toString().trim(); } catch {}
   fs.writeFileSync(lockPath, JSON.stringify({
     comment: 'Otisky produktových zdrojů při posledním syncu — aktualizuje scripts/check-upstream.mjs --update-lock',
     flowmapCommit: commit,

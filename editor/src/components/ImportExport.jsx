@@ -17,7 +17,7 @@ export default function ImportExport({ skin, onImport, t }) {
     try {
       obj = JSON.parse(raw);
     } catch (e) {
-      setResult({ ok: false, errors: [`not-an-object`], warnings: [] });
+      setResult({ ok: false, errors: ['not-an-object'], warnings: [] });
       return;
     }
     const r = validateSkin(obj);
@@ -50,7 +50,7 @@ export default function ImportExport({ skin, onImport, t }) {
           onChange={(e) => {
             const f = e.target.files?.[0];
             if (!f) return;
-            f.text().then(doImport);
+            f.text().then(doImport).catch(() => setResult({ ok: false, errors: ['not-an-object'], warnings: [] }));
             e.target.value = '';
           }}
         />

@@ -13,14 +13,18 @@ function colorVars(section) {
   return out;
 }
 
-// Zrcadlí chování aplikace: barvy per režim (co dark nedefinuje, zůstává
-// z výchozího dark vzhledu), radius + fonty jsou GLOBÁLNÍ ze sekce light.
+// Zrcadlí chování aplikace (theme.js skinToCss): barvy per režim (co dark
+// nedefinuje, zůstává z výchozího dark vzhledu); radius + fonty jdou globálně
+// ze sekce light, ale dark sekce je smí PŘEBÍT (sectionLines(skin.dark) je
+// v produktu zahrnuje).
 export function previewVars(skin, mode, defaults) {
   const defSection = mode === 'dark' ? (defaults.dark || defaults.light) : defaults.light;
   const skinSection = mode === 'dark' ? skin.dark : skin.light;
   const out = { ...colorVars(defSection), ...colorVars(skinSection) };
 
-  const globalSrc = { ...(defaults.light || {}), ...(skin.light || {}) };
+  const sources = [defaults.light, skin.light];
+  if (mode === 'dark') sources.push(skin.dark);
+  const globalSrc = Object.assign({}, ...sources.map((s) => s || {}));
   SKIN_FONT_TOKENS.forEach((k) => {
     if (Array.isArray(globalSrc[k])) out[`--${k}`] = fontStack(globalSrc[k]);
   });
