@@ -3,20 +3,20 @@
 // fonty jako pole názvů rodin (stack skládá klient), radius z omezené množiny.
 // Nic z uživatelského vstupu se nedostane do CSS jako surový string.
 //
-// ⚠️ KOPIE: product/frontend/src/lib/skinValidator.js (ESM pro Vite) — TAM je originál.
+// ⚠️ KOPIE: product/server/pb_hooks/skinValidator.js (CJS pro Goja).
 // Drift obou kopií hlídá product/tests/skin-validator-parity.js — změny dělat v OBOU.
 
-const SKIN_SCHEMA_VERSION = 1;
-const SKIN_MAX_BYTES = 8192;
+export const SKIN_SCHEMA_VERSION = 1;
+export const SKIN_MAX_BYTES = 8192;
 
 // Vestavěné skiny + 'custom' — sdílí users.skin_id (migrace) i sanitizace v hooku.
 // ⚠️ Nový vestavěný skin = přidat SEM + do skins.js + MIGRACE rozšiřující SelectField
 // values na users.skin_id a instance_settings.builtin_id + i18n název v common.json.
-const KNOWN_SKIN_IDS = ['indigo', 'contrast', 'terminal', 'sepia',
+export const KNOWN_SKIN_IDS = ['indigo', 'contrast', 'terminal', 'sepia',
   'ocean', 'les', 'pulnoc', 'svestka', 'broskev', 'grafit', 'rubin', 'custom'];
 
 // 1:1 s index.css :root/.dark (32 barev) + 3 canvas tokeny plátna mapy.
-const SKIN_COLOR_TOKENS = [
+export const SKIN_COLOR_TOKENS = [
   'background', 'foreground', 'card', 'card-foreground', 'popover', 'popover-foreground',
   'primary', 'primary-foreground', 'secondary', 'secondary-foreground',
   'muted', 'muted-foreground', 'accent', 'accent-foreground',
@@ -26,15 +26,15 @@ const SKIN_COLOR_TOKENS = [
   'sidebar-accent', 'sidebar-accent-foreground', 'sidebar-border', 'sidebar-ring',
   'canvas-edge', 'canvas-dots', 'canvas-node',
 ];
-const SKIN_FONT_TOKENS = ['font-heading', 'font-body', 'font-display', 'font-mono'];
+export const SKIN_FONT_TOKENS = ['font-heading', 'font-body', 'font-display', 'font-mono'];
 // Dekorativní malůvka v pozadí LITE režimu. Skin říká jen JMÉNO z výčtu —
 // samotné SVG je součást aplikace (lite/LitePattern), do skinu nikdy nejde
 // obrázek ani URL. Kreslí se barvou primary s nízkou průhledností.
-const SKIN_PATTERNS = ['leaves', 'wave', 'rings', 'stripes', 'prompt',
+export const SKIN_PATTERNS = ['leaves', 'wave', 'rings', 'stripes', 'prompt',
   'lines', 'stars', 'petals', 'arcs', 'grid', 'scope'];
 // Poslední položka font stacku MUSÍ být generická — neznámá rodina pak neškodně
 // spadne na ni (webfonty se nikdy nestahují, k dispozici jsou jen bundlené a systémové).
-const SKIN_FONT_GENERICS = ['sans-serif', 'serif', 'monospace', 'system-ui'];
+export const SKIN_FONT_GENERICS = ['sans-serif', 'serif', 'monospace', 'system-ui'];
 
 const HSL_RE = /^\d{1,3}(\.\d+)?\s+\d{1,3}(\.\d+)?%\s+\d{1,3}(\.\d+)?%$/;
 const RADIUS_RE = /^(\d+(\.\d+)?)(rem|px)$/;
@@ -75,7 +75,7 @@ function validFontList(v) {
 
 // Pole rodin → CSS hodnota. Uvozovky přidává výhradně tahle funkce (názvy dle
 // FONT_NAME_RE uvozovky obsahovat nemohou) — surový string autora do CSS nejde.
-function fontStack(list) {
+export function fontStack(list) {
   return list
     .map((name) => name.trim())
     .map((name) => (BARE_IDENT_RE.test(name) ? name : "'" + name + "'"))
@@ -136,7 +136,7 @@ function cleanSection(section, label, errors, warnings) {
 // → { ok, errors, warnings, clean }
 // ok=false ⇒ clean=null (server v hooku ukládá clean, nevalidní tiše zahodí;
 // klient chyby hlásí uživateli PŘED uložením). Warnings skin neblokují.
-function validateSkin(input) {
+export function validateSkin(input) {
   const errors = [];
   const warnings = [];
   if (!isPlainObject(input)) {
@@ -171,15 +171,3 @@ function validateSkin(input) {
   const ok = errors.length === 0;
   return { ok: ok, errors: errors, warnings: warnings, clean: ok ? clean : null };
 }
-
-module.exports = {
-  SKIN_SCHEMA_VERSION: SKIN_SCHEMA_VERSION,
-  SKIN_MAX_BYTES: SKIN_MAX_BYTES,
-  KNOWN_SKIN_IDS: KNOWN_SKIN_IDS,
-  SKIN_COLOR_TOKENS: SKIN_COLOR_TOKENS,
-  SKIN_FONT_TOKENS: SKIN_FONT_TOKENS,
-  SKIN_FONT_GENERICS: SKIN_FONT_GENERICS,
-  SKIN_PATTERNS: SKIN_PATTERNS,
-  fontStack: fontStack,
-  validateSkin: validateSkin,
-};

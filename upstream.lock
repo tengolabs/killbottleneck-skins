@@ -1,0 +1,6 @@
+{
+  "comment": "Otisky produktových zdrojů při posledním syncu — aktualizuje scripts/check-upstream.mjs --update-lock",
+  "flowmapCommit": "d6452ac",
+  "product/frontend/src/lib/skinValidator.js": "163545d5044f80086bb2d0fc1c2fc4ba9022d5c6044bc0268b1ab105ac7a2160",
+  "product/frontend/src/components/shared/SkinPattern.jsx": "e1ab6188d0baf42b697f1795cdc82908cfa94d2cb15f4a73c2a3396f5bfb58d7"
+}

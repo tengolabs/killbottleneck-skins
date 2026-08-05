@@ -2,10 +2,7 @@
 // Spuštění: node scripts/validate-all.mjs   (exit 0 = vše OK)
 import fs from 'node:fs';
 import path from 'node:path';
-import { createRequire } from 'node:module';
-
-const require = createRequire(import.meta.url);
-const { validateSkin } = require('../validator/skin-validator.cjs');
+import { validateSkin } from '../validator/skin-validator.js';
 
 const dir = path.join(path.dirname(new URL(import.meta.url).pathname), '../skins');
 const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json')).sort();
