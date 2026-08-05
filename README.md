@@ -4,7 +4,7 @@ Komunitní galerie grafických skinů pro [killBottleneck](https://killbottlenec
 Skiny jsou **volná data pod CC0** — vezmi, uprav, sdílej, bez ptaní.
 
 > ⚠️ **Zatím privátní.** Repo se zveřejní společně s oficiálním vydáním
-> killBottlenecku (pak se přesune pod org `killbottleneck` — viz RENAME CHECKLIST).
+> killBottlenecku a přesune pod organizaci — kroky viz [PUBLISH-CHECKLIST.md](PUBLISH-CHECKLIST.md).
 
 ## Jak skin použít
 
