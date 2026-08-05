@@ -35,8 +35,13 @@ const cssVar = (page, mode, name) =>
 
 // Přímo binárka vite (ne npx): kill pak zabíjí skutečný server, žádný osiřelý
 // proces držící port — jinak by příští běh tiše testoval starý build.
+// ⚠️ `--host 127.0.0.1` je nutné: bez něj vite poslouchá na `localhost`, které se
+// na GitHub runnerech přeloží nejdřív na IPv6 (::1) — server tedy naskočí, ale
+// kontrola na http://127.0.0.1 se ho nedovolá a test spadne na „preview nenaběhl".
+// Lokálně to nikdo nepozná, protože tam localhost míří na IPv4. (CI 5. 8. 2026)
 const preview = spawn(path.join(editorDir, 'node_modules/.bin/vite'),
-  ['preview', '--port', String(PORT), '--strictPort'], { cwd: editorDir, stdio: 'pipe' });
+  ['preview', '--host', '127.0.0.1', '--port', String(PORT), '--strictPort'],
+  { cwd: editorDir, stdio: 'pipe' });
 const previewOut = [];
 preview.stdout.on('data', (d) => previewOut.push(d.toString()));
 preview.stderr.on('data', (d) => previewOut.push(d.toString()));
