@@ -18,7 +18,9 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-const flowmapDir = process.env.FLOWMAP_DIR || '/home/holly/Claude_Holly/flowmap-local';
+// Výchozí cesta je RELATIVNÍ — absolutní cesta k něčímu domovskému adresáři
+// nemá ve veřejném repu co dělat a nikomu jinému stejně nesedí.
+const flowmapDir = process.env.FLOWMAP_DIR || '../flowmap-local';
 const updateLock = process.argv.includes('--update-lock');
 const lockPath = path.join(root, 'upstream.lock');
 

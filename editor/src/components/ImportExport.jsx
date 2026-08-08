@@ -3,7 +3,7 @@ import { validateSkin } from '../../../validator/skin-validator.js';
 import { errorMessage } from '../i18n.js';
 import { downloadSkin } from '../lib/download.js';
 
-const GALLERY_URL = 'https://github.com/tengosro/killbottleneck-skins';
+const GALLERY_URL = 'https://github.com/tengolabs/killbottleneck-skins';
 
 // Import (soubor / vložený text) a export. VŠE prochází validátorem:
 // import bere jen `clean`, export se před stažením znovu validuje.
