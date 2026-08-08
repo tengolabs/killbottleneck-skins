@@ -1,3 +1,10 @@
+// LICENCE: tenhle soubor je výjimka. killBottleneck je fair-code (Sustainable
+// Use License), ale validátor je uvolněný pod CC0-1.0 — public domain, bez
+// podmínek. Důvod: editor skinů má být doopravdy open source (MIT) a bez
+// validátoru nefunguje, takže by "open source" bylo jen na papíře. Kontroluje
+// se tu formát dat, ne know-how produktu.
+// Uvolnil držitel práv (Tengo s.r.o.) 8. 8. 2026.
+//
 // Validátor formátu kb-skin v1 — JEDINÁ autorita nad tím, co smí skin obsahovat.
 // Skin je čistá data (JSON), NIKDY libovolné CSS: barvy jen jako holé HSL trojice,
 // fonty jako pole názvů rodin (stack skládá klient), radius z omezené množiny.

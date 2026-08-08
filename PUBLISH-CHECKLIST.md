@@ -5,14 +5,15 @@ ať se ve spěchu na nic nezapomene. Pořadí je záměrné.
 
 ## 0. Rozhodnutí předem (Richard)
 
-- [x] **Organizace — ROZHODNUTO 6. 8. 2026:** teď se jede pod **`tengosro`**
-      (repo zůstává, jen se zveřejní). Org **`tengolabs`** dostane až ČISTOU
-      verzi při oficiálním spuštění odladěné aplikace — přesun repa je tedy
-      SAMOSTATNÁ pozdější událost, ne součást tohoto checklistu.
-- [ ] **CC0 u validátoru potvrdit** — `validator/skin-validator.js` je
-      byte-kopie produktového souboru (SUL); dual-licenci smí udělit jen
-      držitel práv. Po potvrzení dopsat řádek do hlavičky souboru
-      (⚠️ v PRODUKTU, pak byte-sync sem — jinak řve check-upstream).
+- [x] **Organizace — PŘESUNUTO 8. 8. 2026 pod `tengolabs`.** Ta pozdější
+      událost nastala: killBottleneck se vydává a `tengolabs` má nést všechno
+      troje (aplikace, galerie skinů, editor). Odkazy přepsané v editoru
+      (`GALLERY_URL`) i v produktu (`SkinDialog.jsx`, README, 6 stránek docs).
+- [x] **CC0 u validátoru — POTVRZENO 8. 8. 2026.** Richard: „editor má být
+      open source". Editor bez validátoru nefunguje, takže by MIT bylo jen na
+      papíře; validátor navíc kontroluje formát dat, ne know-how produktu.
+      Licenční hlavička dopsána do OBOU kopií najednou, takže zůstaly bajtově
+      shodné — ověřeno `check-upstream` (0 chyb) i paritou v produktu (60/0).
 
 ## 1. Zveřejnění repa (pod tengosro)
 
