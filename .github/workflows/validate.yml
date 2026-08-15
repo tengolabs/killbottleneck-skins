@@ -6,6 +6,27 @@ on:
 permissions:
   contents: read
 jobs:
+  # PR zvenku (z forku) smí měnit JEN skins/*.json — zelený PR nesmí sahat na
+  # workflow, validátor ani editor. Pro interní PR se přeskakuje (skipped
+  # required check se počítá jako splněný).
+  path-guard:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - run: |
+          git fetch origin "$BASE"
+          CHANGED="$(git diff --name-only "origin/$BASE"...HEAD)"
+          echo "Changed files:"; echo "$CHANGED"
+          EXTRA="$(echo "$CHANGED" | grep -vE '^skins/[a-z0-9][a-z0-9-]*\.json$' || true)"
+          if [ -n "$EXTRA" ]; then
+            echo "::error::External pull requests may only touch skins/*.json. Out of scope: $EXTRA"
+            exit 1
+          fi
+        env:
+          BASE: ${{ github.base_ref }}
   validate:
     runs-on: ubuntu-latest
     steps:
