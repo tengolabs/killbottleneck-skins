@@ -39,6 +39,8 @@
     "sidebar-border": "210 30% 86%",
     "sidebar-ring": "205 85% 41%",
     "canvas-edge": "205 85% 41%",
+    "canvas-edge-done": "165 70% 36%",
+    "canvas-edge-late": "5 80% 50%",
     "canvas-dots": "210 30% 86%",
     "canvas-node": "212 20% 42%",
     "font-heading": [
@@ -102,6 +104,8 @@
     "sidebar-border": "212 18% 28%",
     "sidebar-ring": "202 90% 60%",
     "canvas-edge": "202 90% 60%",
+    "canvas-edge-done": "165 65% 50%",
+    "canvas-edge-late": "5 85% 62%",
     "canvas-dots": "213 15% 25%",
     "canvas-node": "210 15% 70%"
   }

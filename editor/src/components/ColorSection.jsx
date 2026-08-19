@@ -17,7 +17,7 @@ const GROUPS = [
     'sidebar-background', 'sidebar-foreground', 'sidebar-primary', 'sidebar-primary-foreground',
     'sidebar-accent', 'sidebar-accent-foreground', 'sidebar-border', 'sidebar-ring',
   ]],
-  ['groupCanvas', ['canvas-edge', 'canvas-dots', 'canvas-node']],
+  ['groupCanvas', ['canvas-edge', 'canvas-edge-done', 'canvas-edge-late', 'canvas-dots', 'canvas-node']],
 ];
 
 const covered = GROUPS.flatMap(([, tokens]) => tokens);

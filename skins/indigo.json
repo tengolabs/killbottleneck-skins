@@ -41,6 +41,8 @@
     "canvas-edge": "239 84% 67%",
     "canvas-dots": "214 32% 91%",
     "canvas-node": "215 20% 65%",
+    "canvas-edge-done": "142 65% 42%",
+    "canvas-edge-late": "0 80% 55%",
     "radius": "0.5rem",
     "pattern": "rings",
     "font-heading": [
@@ -107,6 +109,8 @@
     "sidebar-ring": "217.2 91.2% 59.8%",
     "canvas-edge": "239 84% 67%",
     "canvas-dots": "240 5% 26%",
-    "canvas-node": "215 20% 65%"
+    "canvas-node": "215 20% 65%",
+    "canvas-edge-done": "142 60% 50%",
+    "canvas-edge-late": "0 84% 65%"
   }
 }

@@ -41,6 +41,8 @@
     "canvas-edge": "240 100% 30%",
     "canvas-dots": "0 0% 72%",
     "canvas-node": "0 0% 35%",
+    "canvas-edge-done": "130 100% 25%",
+    "canvas-edge-late": "0 100% 40%",
     "radius": "0",
     "pattern": "stripes",
     "font-heading": [
@@ -96,6 +98,8 @@
     "sidebar-ring": "60 100% 50%",
     "canvas-edge": "60 100% 50%",
     "canvas-dots": "0 0% 30%",
-    "canvas-node": "0 0% 70%"
+    "canvas-node": "0 0% 70%",
+    "canvas-edge-done": "120 100% 55%",
+    "canvas-edge-late": "0 100% 62%"
   }
 }

@@ -41,6 +41,8 @@
     "canvas-edge": "140 70% 42%",
     "canvas-dots": "150 10% 28%",
     "canvas-node": "140 25% 48%",
+    "canvas-edge-done": "150 90% 32%",
+    "canvas-edge-late": "0 90% 45%",
     "radius": "0",
     "pattern": "prompt",
     "font-heading": [
@@ -107,6 +109,8 @@
     "sidebar-ring": "140 75% 50%",
     "canvas-edge": "140 75% 45%",
     "canvas-dots": "150 12% 18%",
-    "canvas-node": "140 25% 42%"
+    "canvas-node": "140 25% 42%",
+    "canvas-edge-done": "150 95% 62%",
+    "canvas-edge-late": "0 95% 60%"
   }
 }
